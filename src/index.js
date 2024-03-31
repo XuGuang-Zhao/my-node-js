@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 })
 
 // 全局拦截器进行token验证
-app.use(expressJWT({secret: config.jwtSecrectKey}).unless({path: [/^\/api\//]}))
+app.use(expressJWT.expressjwt({secret: config.jwtSecrectKey, algorithms: ['HS256']}).unless({path: [/^\/api\//]}))
 
 // 全局错误拦截器添加对插件包抛出错误异常
 app.use((err, req, res, next) => {
