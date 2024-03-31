@@ -3,6 +3,7 @@ const cors = require('cors')
 const joi = require('@hapi/joi')
 const expressJWT = require('express-jwt')
 const config = require('./config/index')
+const swaggerInstall = require('./utils/swagger')
 
 const app = express()
 app.use(express.urlencoded({extended: false}))
@@ -34,6 +35,8 @@ app.use('/api', userRouter)
 
 const userInfoRouter = require('./router/userInfo')
 app.use('/my', userInfoRouter)
+
+swaggerInstall(app)
 
 app.listen(8080, () => {
     console.log('express server running at http://127.0.0.1:8080')
